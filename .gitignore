@@ -1,0 +1,14 @@
+# Node modules
+node_modules/
+
+# Optional: VS Code settings
+.vscode/
+
+# Playwright test results
+test-results/
+screenshots/
+videos/
+traces/
+
+# Optional: OS files
+.DS_Store
