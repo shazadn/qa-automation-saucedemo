@@ -1,7 +1,8 @@
 import { test, expect } from "@playwright/test";
 import { LoginPage } from "../pages/login.page";
+import { errorMessages, testUser } from "../utils/testData";
 
-test("successful login", async ({ page }) => {
+test("user can successfully login", async ({ page }) => {
   const loginPage = new LoginPage(page);
 
   await loginPage.goto();
@@ -10,7 +11,7 @@ test("successful login", async ({ page }) => {
   await expect(page).toHaveTitle(/Swag Labs/);
 
   //Log in using the correct credentials
-  await loginPage.login("standard_user", "secret_sauce");
+  await loginPage.login(testUser.username, testUser.password);
 
   // Verify the URL should be inventory page
   await expect(page).toHaveURL(/inventory/);
@@ -27,10 +28,10 @@ test("failed login shows error", async ({ page }) => {
   await expect(page).toHaveTitle(/Swag Labs/);
 
   //Log in using incorrect credentials
-  await loginPage.login("incorrect_user", "incorrect_pass");
+  await loginPage.login(testUser.username, testUser.password);
 
   // Verify the error message is visible ("Epic sadface: Username and password do not match any user in this service")
   await expect(await loginPage.getErrorMessage()).toHaveText(
-    "Epic sadface: Username and password do not match any user in this service",
+    errorMessages.invalidLogin,
   );
 });
