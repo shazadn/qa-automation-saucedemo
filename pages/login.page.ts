@@ -1,4 +1,4 @@
-import { Page } from "@playwright/test";
+import { Page, expect } from "@playwright/test";
 
 export class LoginPage {
   constructor(private page: Page) {}
@@ -12,6 +12,8 @@ export class LoginPage {
   // Navigate to login page
   async goto() {
     await this.page.goto("https://www.saucedemo.com/");
+    //Verify we have reached the expected page by asserting the page title ("Swag Labs")
+    await expect(this.page).toHaveTitle(/Swag Labs/);
   }
 
   // Perform login

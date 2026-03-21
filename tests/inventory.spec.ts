@@ -3,46 +3,46 @@ import { LoginPage } from "../pages/login.page";
 import { InventoryPage } from "../pages/inventory.page";
 import { testUser, testItem } from "../utils/testData";
 
-test("user can add item to cart from inventory page", async ({ page }) => {
-  const loginPage = new LoginPage(page);
-  const inventoryPage = new InventoryPage(page);
+test.describe("Inventory Page Tests", () => {
+  let loginPage: LoginPage;
+  let inventoryPage: InventoryPage;
 
-  await loginPage.goto();
-  await loginPage.login(testUser.username, testUser.password);
+  test.beforeEach(async ({ page }) => {
+    // Initialize page objects
+    loginPage = new LoginPage(page);
+    inventoryPage = new InventoryPage(page);
 
-  // Add item to cart
-  await inventoryPage.addItem(testItem.name);
+    // Login
+    await loginPage.goto();
+    await loginPage.login(testUser.username, testUser.password);
 
-  // Assertion: cart badge should update to show 1 item
-  await expect(inventoryPage.getCartBadge()).toHaveText("1");
-});
+    // Reset app state to ensure cart/items are clean
+    await inventoryPage.resetAppState();
+  });
 
-test("user can remove item from inventory page", async ({ page }) => {
-  const loginPage = new LoginPage(page);
-  const inventoryPage = new InventoryPage(page);
+  test("user can add item to cart from inventory page", async ({}) => {
+    // Add item to cart
+    await inventoryPage.addItem(testItem.name);
 
-  await loginPage.goto();
-  await loginPage.login(testUser.username, testUser.password);
+    // Assertion: cart badge should update to show 1 item
+    await expect(inventoryPage.getCartBadge()).toHaveText("1");
+  });
 
-  // Add item first (precondition)
-  await inventoryPage.addItem(testItem.name);
+  test("user can remove item from inventory page", async ({}) => {
+    // Add item first (precondition)
+    await inventoryPage.addItem(testItem.name);
 
-  // Remove item
-  await inventoryPage.removeItem(testItem.name);
+    // Remove item
+    await inventoryPage.removeItem(testItem.name);
 
-  // Assertion: cart badge should no longer be visible
-  await expect(inventoryPage.getCartBadge()).toHaveCount(0);
-});
+    // Assertion: cart badge should no longer be visible
+    await expect(inventoryPage.getCartBadge()).toHaveCount(0);
+  });
 
-test("user can logout successfully", async ({ page }) => {
-  const loginPage = new LoginPage(page);
-  const inventoryPage = new InventoryPage(page);
+  test("user can logout successfully", async ({ page }) => {
+    await inventoryPage.logout();
 
-  await loginPage.goto();
-  await loginPage.login(testUser.username, testUser.password);
-
-  await inventoryPage.logout();
-
-  // Assert user is redirected to login page
-  await expect(page).toHaveURL("https://www.saucedemo.com/");
+    // Assert user is redirected to login page
+    await expect(page).toHaveURL("https://www.saucedemo.com/");
+  });
 });

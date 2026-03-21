@@ -7,6 +7,7 @@ export class InventoryPage {
   private cartIcon = '[data-test="shopping-cart-link"]';
   private menuButton = "#react-burger-menu-btn";
   private logoutLink = '[data-test="logout-sidebar-link"]';
+  private resetState = '[data-test="reset-sidebar-link"]';
 
   openMenu() {
     return this.page.locator(this.menuButton).click();
@@ -26,6 +27,12 @@ export class InventoryPage {
 
   goToCart() {
     return this.page.locator(this.cartIcon).click();
+  }
+
+  async resetAppState() {
+    await this.openMenu();
+    await this.page.locator(this.resetState).click();
+    await this.page.getByRole("button", { name: "Close Menu" }).click();
   }
 
   async logout() {
