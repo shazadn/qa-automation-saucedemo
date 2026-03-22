@@ -9,7 +9,7 @@ test.describe("Login Page Tests", () => {
     // Initialize page objects
     loginPage = new LoginPage(page);
 
-    // Login
+    // Navigate to login page
     await loginPage.goto();
   });
 

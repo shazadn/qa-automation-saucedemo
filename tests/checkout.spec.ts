@@ -35,7 +35,7 @@ test.describe("Cart Page Tests", () => {
     await inventoryPage.addItem(testItem.name);
     await inventoryPage.goToCart();
 
-    // Continue to checkout
+    // Continue to checkout page
     await cartPage.checkout();
     await expect(page).toHaveURL(/checkout-step-one/);
   });
@@ -50,11 +50,14 @@ test.describe("Cart Page Tests", () => {
     );
     // Assertion: user is now on checkout step two page
     await expect(page).toHaveURL(/checkout-step-two/);
+    // Assertion: Verify that the item in the cart matches the expected product name
     await expect(
-      cartPage.getCartItems().first().locator(".inventory_item_name"),
+      cartPage.getCartItems().locator(".inventory_item_name"),
     ).toHaveText(testItemTitle.name);
 
+    // Complete order
     await checkoutPage.finishOrder();
+    // Assertion: user is now on checkout complete page
     await expect(page).toHaveURL(/checkout-complete/);
     // Assertion: success message appears
     await expect(checkoutPage.getSuccessMessage()).toHaveText(

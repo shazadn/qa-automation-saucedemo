@@ -40,6 +40,7 @@ test.describe("Inventory Page Tests", () => {
   });
 
   test("user can logout successfully", async ({ page }) => {
+    // Log out from the menu
     await inventoryPage.logout();
 
     // Assert user is redirected to login page

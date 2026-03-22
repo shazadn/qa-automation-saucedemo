@@ -1,13 +1,14 @@
 import { Page, expect } from "@playwright/test";
 
+// Represents the Login Page of Sauce Demo
 export class LoginPage {
   constructor(private page: Page) {}
 
   // Selectors
-  private usernameInput = '[data-test="username"]';
-  private passwordInput = '[data-test="password"]';
-  private loginButton = '[data-test="login-button"]';
-  private errorMessage = ".error-message-container";
+  private usernameInput = '[data-test="username"]'; //Input field for username
+  private passwordInput = '[data-test="password"]'; //Input field for password
+  private loginButton = '[data-test="login-button"]'; //Login button
+  private errorMessage = ".error-message-container"; //Error message container
 
   // Navigate to login page
   async goto() {
@@ -23,7 +24,7 @@ export class LoginPage {
     await this.page.click(this.loginButton);
   }
 
-  // Check for login error message
+  // Returns login error message after a failed login attempt
   async getErrorMessage() {
     return this.page.locator(this.errorMessage);
   }

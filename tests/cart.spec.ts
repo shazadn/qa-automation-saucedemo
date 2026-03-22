@@ -23,7 +23,7 @@ test.describe("Cart Page Tests", () => {
     await inventoryPage.resetAppState();
   });
 
-  test("item added from inventory is visible in cart", async ({ page }) => {
+  test("item added from inventory is visible in cart", async ({}) => {
     // Add item and go to cart
     await inventoryPage.addItem(testItem.name);
     await inventoryPage.goToCart();
@@ -37,7 +37,7 @@ test.describe("Cart Page Tests", () => {
     ).toHaveText(testItemTitle.name);
   });
 
-  test("user can remove item from cart page", async ({ page }) => {
+  test("user can remove item from cart page", async ({}) => {
     // Add item and go to cart
     await inventoryPage.addItem(testItem.name);
     await inventoryPage.goToCart();
