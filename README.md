@@ -155,3 +155,8 @@ If more time was available, the following additional scenarios and improvements 
 - Focus was placed on **clean, maintainable code** rather than extensive coverage
 - Selectors use `data-test` attributes where possible for stability
 - Page Object Model is used to separate test logic from UI interactions
+
+### ▶️ Test Results
+
+All automated tests pass successfully:
+![All Tests Passing](./assets/tests-passing.png)
