@@ -124,8 +124,6 @@ The project uses the **Page Object Model (POM)** to improve readability and main
 
 ## 📌 To Do (If More Time Was Available)
 
-## 📌 To Do (If More Time Was Available)
-
 If more time was available, the following additional scenarios and improvements would be automated:
 
 ### Additional Test Coverage
