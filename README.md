@@ -2,7 +2,7 @@
 
 ## 📌 Overview
 
-This project is an end-to-end test automation suite for the Sauce Demo application using **Playwright** and **TypeScript**.
+This project is an end-to-end test automation suite for the [Sauce Demo website](https://www.saucedemo.com/) using **Playwright** and **TypeScript**.
 
 The goal is to demonstrate clean test design, maintainable code, and effective test coverage of critical user flows.
 
