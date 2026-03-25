@@ -156,5 +156,5 @@ If more time was available, the following additional scenarios and improvements 
 
 ### ▶️ Test Results
 
-All automated tests pass successfully:
+All automated tests passed successfully:
 ![All Tests Passing](./assets/tests-passing.png)
